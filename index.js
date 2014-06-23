@@ -29,7 +29,7 @@ BroccoliManifest.prototype.write = function(readTree, destDir) {
       if (!stat.isFile() && !stat.isSymbolicLink())
         return;
 
-      lines.push(srcFile);
+      lines.push(file);
     });
 
     lines.push("","NETWORK:","*");
