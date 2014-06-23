@@ -12,7 +12,7 @@ var BroccoliManifest = function BroccoliManifest(inTree, options) {
   this.appcacheFile = options.appcacheFile || "/manifest.appcache";
 };
 
-modules.exports = BroccoliManifest;
+module.exports = BroccoliManifest;
 BroccoliManifest.prototype = Object.create(brocWriter.prototype);
 BroccoliManifest.prototype.constructor = BroccoliManifest;
 BroccoliManifest.prototype.description = "Creates an manifest.appcache file for your project";
