@@ -1,0 +1,28 @@
+{
+  "name": "broccoli-manifest",
+  "version": "0.0.1",
+  "description": "A broccoli plugin automating appcache manifest file creation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/racido/broccoli-manifest"
+  },
+  "keywords": [
+    "broccoli-plugin",
+    "appcache",
+    "manifest"
+  ],
+  "author": "Sjoerd de Jong",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/racido/broccoli-manifest/issues"
+  },
+  "homepage": "https://github.com/racido/broccoli-manifest",
+  "dependencies": {
+    "broccoli-writer": "~0.1.1",
+    "broccoli-kitchen-sink-helpers": "~0.2.2"
+  }
+}
