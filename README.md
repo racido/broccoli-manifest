@@ -27,7 +27,7 @@ Ember-cli
 
 For a current `ember-cli` project, edit your `Brocfile.js` like this
 
-```
+```JavaScript
 var mergeTrees = require('broccoli-merge-trees');
 var writeManifest = require('broccoli-manifest');
 
