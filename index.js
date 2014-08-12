@@ -10,6 +10,7 @@ var BroccoliManifest = function BroccoliManifest(inTree, options) {
   this.inTree = inTree;
   options = options || {};
   this.appcacheFile = options.appcacheFile || "/manifest.appcache";
+  this.fallback = options.fallback || [];
 };
 
 module.exports = BroccoliManifest;
@@ -19,6 +20,7 @@ BroccoliManifest.prototype.description = "Creates an manifest.appcache file for 
 
 BroccoliManifest.prototype.write = function(readTree, destDir) {
   var appcacheFile = this.appcacheFile;
+  var fallback = this.fallback;
   return readTree(this.inTree).then(function (srcDir) {
     var lines = ["CACHE MANIFEST", "# created " + (new Date()).toISOString(), "", "CACHE:"];
 
@@ -31,6 +33,11 @@ BroccoliManifest.prototype.write = function(readTree, destDir) {
 
       lines.push(file);
     });
+
+    if (fallback.length) {
+      lines.push("", "FALLBACK:");
+      lines.push.apply(lines, fallback);
+    }
 
     lines.push("","NETWORK:","*");
 
