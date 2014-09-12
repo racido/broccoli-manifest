@@ -1,8 +1,8 @@
 {
   "name": "broccoli-manifest",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A broccoli plugin automating appcache manifest file creation",
-  "main": "index.js",
+  "main": "lib/manifest.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,9 +11,11 @@
     "url": "https://github.com/racido/broccoli-manifest"
   },
   "keywords": [
+    "broccoli",
     "broccoli-plugin",
     "appcache",
-    "manifest"
+    "manifest",
+    "ember-addon"
   ],
   "author": "Sjoerd de Jong",
   "license": "MIT",

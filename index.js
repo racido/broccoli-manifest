@@ -1,44 +1,34 @@
-var fs = require("fs");
 var path = require('path');
-var brocWriter = require("broccoli-writer");
-var helpers = require("broccoli-kitchen-sink-helpers");
+var fs   = require('fs');
 
-var BroccoliManifest = function BroccoliManifest(inTree, options) {
-  if (!(this instanceof BroccoliManifest)) {
-    return new BroccoliManifest(inTree, options);
-  }
-  this.inTree = inTree;
-  options = options || {};
-  this.appcacheFile = options.appcacheFile || "/manifest.appcache";
-};
+var manifest = require('./lib/manifest');
 
-module.exports = BroccoliManifest;
-BroccoliManifest.prototype = Object.create(brocWriter.prototype);
-BroccoliManifest.prototype.constructor = BroccoliManifest;
-BroccoliManifest.prototype.description = "Creates an manifest.appcache file for your project";
+module.exports = {
+  name: 'broccoli-manifest',
+  initializeOptions: function() {
+    var defaultOptions = {
+      enabled: this.app.env === 'production',
+      appcacheFile: "/manifest.appcache"
+    }
 
-BroccoliManifest.prototype.write = function(readTree, destDir) {
-  var appcacheFile = this.appcacheFile;
-  return readTree(this.inTree).then(function (srcDir) {
-    var lines = ["CACHE MANIFEST", "# created " + (new Date()).toISOString(), "", "CACHE:"];
+    this.options = this.app.options.manifest = this.app.options.manifest || {};
 
-    getFilesRecursively(srcDir, [ "**/*" ]).forEach(function (file) {
-      var srcFile = path.join(srcDir, file);
-      var stat = fs.lstatSync(srcFile);
+    for (var option in defaultOptions) {
+      if (!this.options.hasOwnProperty(option)) {
+        this.options[option] = defaultOptions[option];
+      }
+    }
+  },
+  postprocessTree: function (type, tree) {
+    if (type === 'all' && this.options.enabled) {
+      tree = manifest(tree, this.options);
+    }
 
-      if (!stat.isFile() && !stat.isSymbolicLink())
-        return;
-
-      lines.push(file);
-    });
-
-    lines.push("","NETWORK:","*");
-
-    fs.writeFileSync(path.join(destDir, appcacheFile), lines.join("\n"));
-  });
-};
-
-function getFilesRecursively(dir, globPatterns) {
-  return helpers.multiGlob(globPatterns, { cwd: dir });
+    return tree;
+  },
+  included: function (app) {
+    this.app = app;
+    this.initializeOptions();
+  },
+  treeFor: function() {}
 }
-
