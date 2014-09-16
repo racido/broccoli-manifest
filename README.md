@@ -5,8 +5,15 @@ HTML5 cache-manifest compilation for broccoli
 
 A nice introduction on the subject: http://www.html5rocks.com/en/tutorials/appcache/beginner/
 
-Usage
------
+Usage for Ember Cli
+-------------------
+
+`npm install --save-dev broccoli-manifest`
+
+Upgrade your `index.html` (see below) and you are done.
+
+Usage for Broccoli.js
+---------------------
 
 `npm install --save broccoli-manifest`
 
