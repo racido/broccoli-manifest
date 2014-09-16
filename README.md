@@ -17,7 +17,7 @@ Usage for Broccoli.js
 
 `npm install --save broccoli-manifest`
 
-Use `broccoli-manifest` as your last filter in the Brocfile.js like this
+Use `broccoli-manifest` as your last filter in the `Brocfile.js` like this
 
 ```JavaScript
 var writeManifest = require('broccoli-manifest');
@@ -28,6 +28,26 @@ var completeTree = mergeTrees([appJs, appCss, publicFiles]);
 
 module.exports = mergeTrees([completeTree, writeManifest(completeTree)]);
 ```
+
+Ember-cli
+---------
+
+For a current `ember-cli` project, edit your `Brocfile.js` like this
+
+```JavaScript
+var mergeTrees = require('broccoli-merge-trees');
+var writeManifest = require('broccoli-manifest');
+
+...
+  all app.import statements go here
+...
+
+// Write a html5 manifest.appcache file
+var completeTree = app.toTree();
+module.exports = mergeTrees([completeTree, writeManifest(completeTree)]);
+```
+
+In case you do not have `mergeTrees`, just run `npm install --save broccoli-merge-trees`
 
 Upgrade your index.html
 -----------------------
