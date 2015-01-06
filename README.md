@@ -49,6 +49,27 @@ module.exports = mergeTrees([completeTree, writeManifest(completeTree)]);
 
 In case you do not have `mergeTrees`, just run `npm install --save broccoli-merge-trees`
 
+### External Files
+
+
+```JavaScript
+var mergeTrees = require('broccoli-merge-trees');
+var manifest = require('broccoli-manifest');
+
+...
+  all app.import statements go here
+...
+
+// Write a html5 manifest.appcache file with jquery external
+var completeTree = app.toTree();
+var manifestTree = manifest(completree)
+manifestTree.addExternalFile("https://code.jquery.com/jquery-2.1.1.min.js")
+
+module.exports = mergeTrees([completeTree, manifestTree]);
+```
+
+
+
 Upgrade your index.html
 -----------------------
 
