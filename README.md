@@ -10,6 +10,17 @@ Usage for Ember Cli
 
 `npm install --save-dev broccoli-manifest`
 
+```JavaScript
+//app/config/environment.js
+
+ENV.manifest = {
+  enabled: true,
+  appcacheFile: "/manifest.appcache",
+  excludePaths: ['index.html', 'someother.html'],
+  network: ['api/']
+}
+````
+
 Upgrade your `index.html` (see below) and you are done.
 
 Usage for Broccoli.js
