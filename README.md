@@ -42,6 +42,18 @@ var completeTree = mergeTrees([appJs, appCss, publicFiles]);
 module.exports = mergeTrees([completeTree, writeManifest(completeTree)]);
 ```
 
+Options
+-------
+
+You can pass some options as the second argument to `writeManifest`:
+
+```JavaScript
+
+writeManifest(completeTree, {
+	appcacheFile: '/manifest.appcache', // Name of the generated appcache file - default value shown
+	fallback: ['assets/is-online.json assets/offline.json'] // Lines to add to the FALLBACK section of the generated manifest
+});
+```
 
 ### External Files
 
