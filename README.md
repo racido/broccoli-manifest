@@ -9,6 +9,19 @@ Usage for Ember Cli
 -------------------
 
 `npm install --save-dev broccoli-manifest`
+`npm install --save broccoli-merge-trees`
+
+```JavaScript
+//app/config/environment.js
+
+ENV.manifest = {
+  enabled: true,
+  appcacheFile: "/manifest.appcache",
+  excludePaths: ['index.html', 'someother.html'],
+  includePaths: ['/'],
+  network: ['api/']
+}
+````
 
 Upgrade your `index.html` (see below) and you are done.
 
@@ -29,25 +42,27 @@ var completeTree = mergeTrees([appJs, appCss, publicFiles]);
 module.exports = mergeTrees([completeTree, writeManifest(completeTree)]);
 ```
 
-Ember-cli
----------
 
-For a current `ember-cli` project, edit your `Brocfile.js` like this
+### External Files
+
 
 ```JavaScript
 var mergeTrees = require('broccoli-merge-trees');
-var writeManifest = require('broccoli-manifest');
+var manifest = require('broccoli-manifest');
 
 ...
   all app.import statements go here
 ...
 
-// Write a html5 manifest.appcache file
+// Write a html5 manifest.appcache file with jquery external
 var completeTree = app.toTree();
-module.exports = mergeTrees([completeTree, writeManifest(completeTree)]);
+var manifestTree = manifest(completree)
+manifestTree.includePaths(["https://code.jquery.com/jquery-2.1.1.min.js"])
+
+module.exports = mergeTrees([completeTree, manifestTree]);
 ```
 
-In case you do not have `mergeTrees`, just run `npm install --save broccoli-merge-trees`
+
 
 Upgrade your index.html
 -----------------------
