@@ -19,7 +19,8 @@ ENV.manifest = {
   appcacheFile: "/manifest.appcache",
   excludePaths: ['index.html', 'someother.html'],
   includePaths: ['/'],
-  network: ['api/']
+  network: ['api/'],
+  showCreateDate: true
 }
 ````
 
