@@ -19,7 +19,8 @@ ENV.manifest = {
   appcacheFile: "/manifest.appcache",
   excludePaths: ['index.html', 'someother.html'],
   includePaths: ['/'],
-  network: ['api/']
+  network: ['api/'],
+  showCreateDate: true
 }
 ````
 
@@ -54,6 +55,9 @@ writeManifest(completeTree, {
 	fallback: ['assets/is-online.json assets/offline.json'] // Lines to add to the FALLBACK section of the generated manifest
 });
 ```
+
+`showCreateDate` toggles the inclusion of a Date object or a random string in your manifest. If you
+want to hide the build date from customers, this is your setting.
 
 ### External Files
 
