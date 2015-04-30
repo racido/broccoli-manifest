@@ -59,6 +59,16 @@ writeManifest(completeTree, {
 `showCreateDate` toggles the inclusion of a Date object or a random string in your manifest. If you
 want to hide the build date from customers, this is your setting.
 
+Thanks to https://github.com/racido/broccoli-manifest/pull/9 files can be filtered using
+regular expressions:
+
+```JavaScript
+{
+  excludePaths: ['index.html', new RegExp(/.\.map$/)],
+  includePaths: ['']
+}
+```
+
 ### External Files
 
 
