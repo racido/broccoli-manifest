@@ -5,6 +5,8 @@ HTML5 cache-manifest compilation for broccoli
 
 A nice introduction on the subject: http://www.html5rocks.com/en/tutorials/appcache/beginner/
 
+There's also a Wicked-Good-Ember talk on this subject, see http://confreaks.tv/videos/wickedgoodember2015-taking-ember-offline
+
 Usage for Ember Cli
 -------------------
 
