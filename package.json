@@ -4,7 +4,8 @@
   "description": "A broccoli plugin automating appcache manifest file creation",
   "main": "lib/manifest.js",
   "ember-addon": {
-    "main": "lib/ember-addon.js"
+    "main": "lib/ember-addon.js",
+    "after": "broccoli-asset-rev"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
