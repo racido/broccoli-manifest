@@ -84,7 +84,7 @@ var manifest = require('broccoli-manifest');
 
 // Write a html5 manifest.appcache file with jquery external
 var completeTree = app.toTree();
-var manifestTree = manifest(completree)
+var manifestTree = manifest(completeTree)
 manifestTree.includePaths(["https://code.jquery.com/jquery-2.1.1.min.js"])
 
 module.exports = mergeTrees([completeTree, manifestTree]);
